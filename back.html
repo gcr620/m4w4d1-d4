@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back office</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="frontStyle.css">
+</head>
+<body>
+    <div class="back">
+      <!-- navbar -->
+        <div class="navCont">
+            <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">GCR Shop</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse show" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Back Office</a>
+                      </li>
+                    </ul>
+                    <span class="navbar-text fw-bold">
+                      Tutto quello che non ti serve
+                    </span>
+                  </div>
+                </div>
+              </nav>
+         </div>
+         <!-- jumbo con testo -->
+         <div class="jumbo mb-3">
+            <h1 class="text-center text-decoration-underline my-3">Benvenuto nel BackOffice!</h1>
+            <h2 class="text-center my-3">Aggiungi i prodotti da qui</h2>
+        </div>
+        <div class="form">
+          <div class="container">
+            <!-- bisonga aggiungere was-validated -->
+            <form class="row g-3 needs-validation" novalidate="">
+              <div class="col-md-4">
+                <label for="nameval" class="form-label">Name</label>
+                <input type="text" class="form-control" id="nameval" required="">
+              </div>
+              <div class="col-md-4">
+                <label for="brandval" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="brandval" required="">
+              </div>
+              <div class="col-md-4">
+                <label for="priceval" class="form-label">Price</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="inputGroupPrepend">€</span>
+                  <input type="text" inputmode="numeric" pattern="[0-9]{1,5}" class="form-control" id="priceval" aria-describedby="inputGroupPrepend" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="descval" class="form-label">Description</label> <br>
+                <!-- <input type="text" class="form-control" id="descval" required=""> -->
+                <textarea class="form-control" name="description" id="descval" cols="80" rows="10" required></textarea>
+              </div>
+              <div class="col-md-4">
+                <label for="imgval" class="form-label">Immagine (inserire un url)</label>
+                <input type="url" class="form-control" id="imgval" value="https://" required >
+              </div>
+              <div class="col-12">
+                <a id="subProd" class="btn btn-primary mt-3" onclick="check()">Inserisci</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="jumbo">
+          <h2 class="text-center mb-5">Oppure modifica i prodotti da qui:</h2>
+        </div>
+        <div class="prodCont">
+          <div class="container-fluid">
+            <div id="prodList" class="row row-cols-auto justify-content-center align-items-center gap-3">
+              <div class="card">
+                <img src="img/test-img.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Card test</h5>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis necessitatibus nemo placeat deserunt voluptas veritatis eos modi unde, porro quo adipisci praesentium repudiandae blanditiis velit at, ipsam labore repellat provident!</p>
+                  <p class="price fw-bold fs-3">€30</p>
+                  <div class="bot">
+                    <a class="btn btn-danger px-5" onclick="modify()">Modifica</a>
+                  </div>
+                </div>  
+            </div>
+        </div>
+          </div>
+        </div>
+    </div>
+    <!-- my script -->
+    <script src="script.js"></script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Font Awsone -->
+    <script src="https://kit.fontawesome.com/602cf3c366.js" crossorigin="anonymous"></script>
+</body>
+</html>
