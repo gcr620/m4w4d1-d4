@@ -8,9 +8,13 @@ let prodList = document.getElementById("prodList");
 let back = document.getElementsByTagName("title");
 console.log("sei nel " + back[0].innerText);
 // per la validazione
-let val = document.querySelector("form").classList
+let val = document.querySelector("form");
 // per il form
-let form = document.querySelectorAll("input.form-control")
+let form = document.querySelectorAll(".form-control")
+console.log(form);
+// query string
+let params = new URLSearchParams(window.location.search);
+let query = params.get("q");
 // console.log(prodList);
 // se il link non ha l'id allora carica normale
 if (!window.location.search) {
@@ -18,8 +22,8 @@ if (!window.location.search) {
         getprod()
     )    
 } else if (window.location.search) { // altrimenti carica la pagina di info
-    let params = new URLSearchParams(window.location.search);
-    let query = params.get("q");
+    // let params = new URLSearchParams(window.location.search);
+    // let query = params.get("q");
     fetch(endPoint + query, {
         headers: {
         "Authorization": apiKey
@@ -75,7 +79,8 @@ function createList(raw) {
         } else {
             btn.href = "info.html?q=" + prod._id;
             btn.setAttribute('onclick', 'infoPage()')
-            btn.classList.add("desc" ,"btn", "btn-secondary", "px-5");   
+            btn.classList.add("desc" ,"btn", "btn-secondary", "px-5"); 
+            btn.innerText = "Info";   
         }
         // console.log(btn);
 
@@ -119,22 +124,50 @@ function infoCreation(raw) {
 function check() {
     let valCount = 0;
     form.forEach(inp => {
-        console.log(valCount);
+        // console.log(valCount);
         if (inp.validity.valid) {
             valCount ++;
             console.log("nuovo cont: " + valCount);
-            val.add("was-validated");
+            val.classList.add("was-validated");
         } else {
-            val.add("was-validated");
+            val.classList.add("was-validated");
         }
     })
     if (valCount === 5) {
-        console.log("a posto fra");
+        console.log("validazione a posto fra");
         addProd()
     }
 }
 
 async function addProd() {
-    
+    // 0 name , 1 brand , 2 price , 3 description , 4 img
+    try {
+        // payload
+        let n = form[0].value;
+        let b = form[1].value;
+        let p = form[2].value;
+        let d = form[3].value;
+        let i = form[4].value;
+
+        console.log(n);
+        console.log(b);
+        console.log(p);
+        console.log(d);
+        console.log(i);
+        // body
+        let Mybody = { name: n, description: d, brand: b, imageUrl: i, price: p};
+        // post per aggiungere prodotto
+        let post = await fetch(endPoint, {
+            method: "POST", body: JSON.stringify(Mybody),
+            headers: {
+            "Authorization": apiKey,
+            "Content-type": "application/json;charset=UTF-8"
+            }
+            });
+        let res = await post.json()
+        console.log(res);  
+    } catch (error) {
+        console.log("errore nel post");
+    }  
 }
 // modifica dei prodotti
