@@ -12,15 +12,21 @@ main{
     width: 200px;
 }
 /* front and back */
+
 div.prodCont .card{
     width: 400px;
-    /* height: auto; */
+    height: 445px;
     padding: 0;
 } 
+div.prodCont .card img{
+    width: 398px;
+    min-height: 265px;
+    
+}
 
 div.prodCont div.card-body{
-    max-width: 366px;
-    max-height: 200px;
+    max-width: 398px;
+    max-height: 265px;
 }
 
 div.prodCont p.card-text{
