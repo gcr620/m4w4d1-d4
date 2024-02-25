@@ -24,15 +24,12 @@ let tempMod;
 // query string
 let params = new URLSearchParams(window.location.search);
 let query = params.get("q");
-// console.log(prodList);
 // se il link non ha l'id allora carica normale
 if (!window.location.search) {
     window.onload = () => (
         getprod()
     )    
 } else if (window.location.search) { // altrimenti carica la pagina di info
-    // let params = new URLSearchParams(window.location.search);
-    // let query = params.get("q");
     fetch(endPoint + query, {
         headers: {
         "Authorization": apiKey,
@@ -63,6 +60,7 @@ async function getprod() {
 }
 // creazione lista prodotti
 function createList(raw) {
+    prodList.innerHTML = "";
     raw.forEach(prod => {
         // creazione
         // console.log(prod);
@@ -138,7 +136,6 @@ function infoCreation(raw) {
 function check() {
     let valCount = 0;
     form.forEach(inp => {
-        // console.log(valCount);
         if (inp.validity.valid) {
             valCount ++;
             console.log("nuovo cont: " + valCount);
@@ -175,7 +172,9 @@ async function addProd() {
             }
             });
         let res = await post.json()
-        console.log(res);  
+        console.log(res); 
+        alert("Prodotto aggiunto!") ;
+        getprod();
     } catch (error) {
         alert("errore nel post");
     }  
@@ -223,7 +222,6 @@ async function modify() {
 function verify() {
     let valCount = 0;
     form.forEach(inp => {
-        // console.log(valCount);
         if (inp.validity.valid) {
             valCount ++;
             console.log("nuovo cont: " + valCount);
@@ -242,13 +240,10 @@ function verify() {
 
 async function putProd() {
     try {
-        // let tempD = event.target.id;
         console.log(tempMod + " è l'id");
         let allBtn = document.querySelectorAll("a.btn");
         console.log(allBtn);
         console.log("sopra sono i bottoni");
-        // let cardBody = document.getElementById("C-" + tempD)
-        // console.log(cardBody.children);
 
         let myBody = { "name": n.value, "description": d.value, "brand": b.value, "imageUrl": i.value, "price": p.value};
         console.log(myBody);
@@ -272,7 +267,8 @@ async function putProd() {
                 bt.classList.remove("disabled")
             }
         })
-        alert("Prodotto modificato! Ricarica la pagina per vedere");
+        alert("Prodotto modificato!");
+        getprod();
     } catch (error) {
             alert("errore nel put");
     }
