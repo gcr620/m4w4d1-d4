@@ -18,7 +18,7 @@ let b = document.getElementById("brandval");
 let p = document.getElementById("priceval");
 let d = document.getElementById("descval");
 let i = document.getElementById("imgval");
-
+// id temporaneo per la modifica
 let tempMod;
 
 // query string
@@ -268,6 +268,7 @@ async function putProd() {
             }
         })
         alert("Prodotto modificato!");
+        tempMod = " ";
         getprod();
     } catch (error) {
             alert("errore nel put");
